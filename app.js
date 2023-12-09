@@ -4,11 +4,11 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
-const port = 3000;
 
 require('dotenv').config();
 const dbUser = process.env.DB_USER;
 const dbPassword = process.env.DB_PW;
+const port = process.env.PORT || 3000;
 
 // MongoDB 연결
 mongoose.connect('mongodb+srv://' + dbUser + ':' + dbPassword + '@cluster0.7aje40r.mongodb.net/');
