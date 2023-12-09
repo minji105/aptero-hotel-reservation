@@ -46,7 +46,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './views/main.html'));
+    res.sendFile(path.join(__dirname, './views/index.html'));
 });
 
 // 루트 엔드포인트
