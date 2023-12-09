@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/main.css">
+    <title>Seoul Shilla Reservation</title>
+</head>
+
+<body>
+    <header>
+        <div class="header1">
+            <div id="big-logo">T</div>
+            <div id="logo">HE&nbsp;</div>
+            <div id="big-logo">S</div>
+            <div id="logo">HILLA</div>
+        </div>
+        <div id="sublogo">HOTELS & RESORTS</div>
+    </header>
+    <h2>Hotel Reservation</h2>
+    <div id="ment">예약을 원하시는 날짜, 인원을 선택해주세요.</div>
+    <div class="container">
+        <form id="reservationForm" action="/reserve" method="post">
+            <label for="checkIn"><strong>Checkin:</strong></label>
+            <input type="date" id="checkIn" name="checkIn" required>
+
+            <label for="checkOut"><strong>Checkout:</strong></label>
+            <input type="date" id="checkOut" name="checkOut" required>
+
+            <label for="adults"><strong>Adults:</strong></label>
+            <select id="adults" name="adults" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+
+            <label for="children"><strong>Children:</strong></label>
+            <select id="children" name="children" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <div id="btt">
+                <button type="button" onclick="showAvailableRooms(event);">조회</button>
+            </div>
+
+            <!-- 예약 가능한 방 목록 -->
+            <div id="availableRooms">
+                <label for="rooms"><strong>Rooms:</strong></label>
+                <div id="roomSelect">
+                    <select id="rooms" name="rooms" required>
+                        <!-- 동적으로 방 목록이 추가될 자리 -->
+                    </select>
+                </div>
+                <div id="btt">
+                    <button type="button" id="selectButton" onclick="showInformation(event);" disabled>선택</button>
+                </div>
+            </div>
+
+            <div id="userInformation" style="display: none;">
+                <label for="name"><strong>Name:</strong></label>
+                <div id="input-block">
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <label for="phone"><strong>Phone:</strong></label>
+                <div id="input-block">
+                    <input type="text" id="phone" name="phone" required>
+                </div>
+                <div id="btt">
+                    <button type="submit" id="reserveButton" disabled>예약</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+            const checkInDate = document.getElementById('checkIn').value;
+            const checkOutDate = document.getElementById('checkOut').value;
+
+            if (!checkInDate || !checkOutDate) {
+                alert('체크인과 체크아웃 날짜를 선택하세요.');
+                return false;
+            }
+
+            return true; // 폼이 제출되도록 true 반환
+        }
+
+        function showAvailableRooms(event) {
+            event.preventDefault(); // 폼의 기본 동작 방지
+
+            if (!validateForm()) {
+                return false;
+            }
+
+            const availableRooms = ['Standard Room', 'Deluxe Room', 'Suite Room'];
+
+            const roomsSelect = document.getElementById('rooms');
+            roomsSelect.innerHTML = '';
+
+            availableRooms.forEach(room => {
+                const option = document.createElement('option');
+                option.value = room;
+                option.text = room;
+                roomsSelect.appendChild(option);
+            });
+
+            document.getElementById('availableRooms').style.display = 'block';
+            document.getElementById('selectButton').disabled = false;
+
+            return false; // 폼이 실제로 제출되지 않도록 false 반환
+        }
+
+        function showInformation(event) {
+            event.preventDefault(); // 폼의 기본 동작 방지
+
+            document.getElementById('userInformation').style.display = 'block';
+            document.getElementById('reserveButton').disabled = false;
+
+            return false; // 폼이 실제로 제출되지 않도록 false 반환
+        }
+    </script>
+    <script src="app.js"></script>
+</body>
+
+</html>

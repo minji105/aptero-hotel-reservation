@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Confirmation</title>
+    <link rel="stylesheet" href="/confirmation.css">
+</head>
+
+<body>
+    <header>
+        <div class="header1">
+            <div id="big-logo">T</div>
+            <div id="logo">HE&nbsp;</div>
+            <div id="big-logo">S</div>
+            <div id="logo">HILLA</div>
+        </div>
+        <div id="sublogo">HOTELS & RESORTS</div>
+    </header>
+    <h2>Reservation Confirmation</h2>
+    <div id="ment"><span id="name" style="font-family: Arial;"></span> 님, 예약되었습니다.</div>
+    <div class="container">
+        <ul>
+            <li><strong>Check-in:</strong> <span id="checkIn" style="font-family: Arial;"></span></li>
+            <li><strong>Check-out:</strong> <span id="checkOut" style="font-family: Arial;"></span></li>
+            <li><strong>Room Type:</strong> <span id="roomType" style="font-family: Arial"></span></li>
+            <li><strong>Name:</strong> <span id="reserve_name" style="font-family: Arial;"></span></li>
+            <li><strong>Phone:</strong> <span id="phone" style="font-family: Arial;"></span></li>
+        </ul>
+    </div>
+
+    <script>
+        // URL에서 쿼리 파라미터를 읽어와서 표시하는 스크립트
+        const urlParams = new URLSearchParams(window.location.search);
+        const checkIn = urlParams.get('checkIn');
+        const checkOut = urlParams.get('checkOut');
+        const roomType = urlParams.get('roomType');
+        const name = urlParams.get('name');
+        const phone = urlParams.get('phone');
+
+        // HTML에 데이터를 적용
+        document.getElementById('name').innerText = name;
+        document.getElementById('checkIn').innerText = checkIn;
+        document.getElementById('checkOut').innerText = checkOut;
+        document.getElementById('roomType').innerText = roomType;
+        document.getElementById('reserve_name').innerText = name;
+        document.getElementById('phone').innerText = phone;
+    </script>
+</body>
+
+</html>
